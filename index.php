@@ -35,7 +35,7 @@ class AdvancedArchive
             <h2>Features</h2>
             <ul>
                 <li>Ajax data return (no reload required)</li>
-                <li>filters by Taxonomies</li>
+                <li>Filters by Taxonomies</li>
                 <li>Pagination</li>
                 <li>Search Box</li>
                 <li>URL params for easy share</li>
