@@ -1,0 +1,219 @@
+.c-pagination {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+
+    &__filters{
+        width: calc(100% - 200px);
+        display: flex;
+        flex-flow: row wrap;
+
+        @include respond-below(md) {
+            width: 100%;
+            justify-content: center;
+        }
+    }
+
+    &__filter{
+        position: relative;
+        max-width: 150px; 
+        width: 100%;
+        margin-right: 20px;
+
+        @include respond-below(sm) {
+            margin-right: initial;
+            max-width: 100%;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        &:last-child{
+            margin: initial;
+        }
+
+        &-current{
+            display: block;
+            padding: 10px; 
+            border: 1px solid black;
+            cursor: pointer;
+        }
+
+        &-options{
+            display: block;
+            width: 100%;
+            max-height: 0px;
+            transition: .3s all;
+            overflow: hidden;
+            position: absolute;
+            left: 0;
+            top: 37px;
+            background-color: white;
+            border: 1px solid black;
+            border-top: initial;
+            padding: 0 10px;
+
+            &.open{
+                max-height: 1000px;
+            }
+        }
+
+        &-option{
+            padding: 10px 0;
+            cursor: pointer;
+        }
+    }
+
+    &__search{
+        width: 200px;
+
+        @include respond-below(md) {
+            width: 100%;
+            order: -1;
+            margin-bottom: 20px;
+        }
+
+        input{
+            width: 100%;
+            padding: 10px;
+        }
+    }
+
+    &__container {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 30px;
+        margin: 30px 0;
+        width: 100%;
+
+        &.loading {
+            display: block;
+            width: 100%;
+        }
+
+        &.nothing-found{
+            display: block;
+            width: 100%;
+        }
+
+        @include respond-below(l) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @include respond-below(md) {
+            grid-template-columns: repeat(1, 1fr);
+        }
+    }
+
+    &__controllers {
+        display: flex;
+        flex-flow: row wrap;
+        align-items: center;
+
+        .prev-page,
+        .next-page {
+            background-color: transparent;
+            border: initial;
+            font-size: 15px;
+            cursor: pointer;
+            transition: .3s all;
+
+            &:hover{
+                color: lightblue;
+            }
+
+            @include respond-below(sm){
+                font-size: 13px;
+
+                &:hover{
+                    color: initial;
+                }
+            }
+
+
+            &.disabled {
+                display: none;
+            }
+        }
+
+        .next-page {
+            margin-left: 10px;
+        }
+
+        .prev-page {
+            margin-right: 10px;
+        }
+    }
+
+    &__pages {
+        display: flex;
+        flex-flow: row wrap;
+
+        &.has-prev-hidden-buttons {
+            &::before {
+                content: '...';
+                font-size: 15px;
+                line-height: 1em;
+                display: flex;
+                justify-content: center;
+                align-items: flex-end;
+                letter-spacing: 3px;
+
+                @include respond-below(sm){
+                    font-size: 12px;
+                }
+            }
+        }
+
+        &.has-next-hidden-buttons {
+            &::after {
+                content: '...';
+                font-size: 15px;
+                line-height: 1em;
+                display: flex;
+                justify-content: center;
+                align-items: flex-end;
+                letter-spacing: 3px;
+
+                @include respond-below(sm){
+                    font-size: 12px;
+                }
+            }
+        }
+
+        .page {
+            width: 40px;
+            height: 40px;
+            background-color: lightgrey;
+            color: black;
+            border: initial;
+            outline: initial;
+            cursor: pointer;
+            margin-right: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+            line-height: 1em;
+
+            @include respond-below(sm){
+                font-size: 12px;
+                width: 30px;
+                height: 30px;
+                margin-right: 3px;
+            }
+
+            &:last-child {
+                margin-right: initial;
+            }
+
+            &.active {
+                background-color: lightblue;
+                color: white;
+            }
+
+            &.hidden {
+                display: none;
+            }
+        }
+    }
+}

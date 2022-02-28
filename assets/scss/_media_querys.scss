@@ -1,0 +1,30 @@
+/**
+ * Breakpoints
+ */
+$breakpoints: (xl: 1282px,
+    l: 1080px,
+    sl: 992px,
+    md: 768px,
+    sm: 576px);
+
+// MIN-WIDTH
+@mixin respond-above($breakpoint) {
+    @if map-has-key($breakpoints, $breakpoint) {
+        $breakpoint-value: map-get($breakpoints, $breakpoint);
+
+        @media (min-width: $breakpoint-value) {
+            @content;
+        }
+    }
+}
+
+// MAX-WIDTH
+@mixin respond-below($breakpoint) {
+    @if map-has-key($breakpoints, $breakpoint) {
+        $breakpoint-value: map-get($breakpoints, $breakpoint);
+
+        @media (max-width: $breakpoint-value) {
+            @content;
+        }
+    }
+}
