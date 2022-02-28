@@ -2,7 +2,7 @@ import Api from './utils/api';
 import Debounce from './utils/debounce';
 
 class AdvancedPagination {
-  constructor(module) {
+  constructor(module = document) {
     //Pagination
     this.module = module;
     this.paginator = module.querySelector('.js-post-pagination');

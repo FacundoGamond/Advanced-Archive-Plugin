@@ -5,9 +5,24 @@
  * Breakpoints
  */
 .c-pagination {
+  max-width: 1282px !important;
+  margin: 0 auto;
+  padding: 0 41px;
   display: flex;
   flex-flow: row wrap;
   align-items: center;
+  width: 100%;
+}
+@media (max-width: 1080px) {
+  .c-pagination {
+    max-width: 992px;
+    padding: 0 30px;
+  }
+}
+@media (max-width: 992px) {
+  .c-pagination {
+    max-width: initial;
+  }
 }
 .c-pagination__filters {
   width: calc(100% - 200px);
@@ -22,7 +37,7 @@
 }
 .c-pagination__filter {
   position: relative;
-  max-width: 150px;
+  max-width: max-content;
   width: 100%;
   margin-right: 20px;
 }
@@ -43,6 +58,9 @@
   border: 1px solid black;
   cursor: pointer;
 }
+.c-pagination__filter-current svg {
+  margin-left: 8px;
+}
 .c-pagination__filter-options {
   display: block;
   width: 100%;
@@ -51,7 +69,7 @@
   overflow: hidden;
   position: absolute;
   left: 0;
-  top: 37px;
+  top: 89px;
   background-color: white;
   border: 1px solid black;
   border-top: initial;
@@ -199,8 +217,8 @@
   margin-right: initial;
 }
 .c-pagination__pages .page.active {
-  background-color: lightblue;
-  color: white;
+  background-color: lightgreen !important;
+  color: white !important;
 }
 .c-pagination__pages .page.hidden {
   display: none;
@@ -208,10 +226,26 @@
 
 .c-post {
   border: 1px solid black;
+  background-color: white;
+  align-self: flex-start;
 }
 .c-post a {
-  padding: 30px;
+  padding: 30px 15px;
   display: block;
+}
+.c-post__thumbnail {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  object-position: center;
+  margin-bottom: 20px;
+}
+.c-post__title {
+  font-size: 20px;
+}
+.c-post__brief {
+  font-size: 15px;
+  margin-top: 10px;
 }
 
 /*# sourceMappingURL=advanced-archive.min.css.map*/

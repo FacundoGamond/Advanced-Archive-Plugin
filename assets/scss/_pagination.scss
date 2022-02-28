@@ -1,7 +1,20 @@
 .c-pagination {
-    display: flex;
+    max-width: map-get($breakpoints, 'xl' ) !important;
+    margin: 0 auto;
+	padding: 0 41px;
+	display: flex;
     flex-flow: row wrap;
     align-items: center;
+    width: 100%;
+
+    @media (max-width: map-get($breakpoints, 'l' )) {
+		max-width: map-get($breakpoints, 'sl' );
+		padding: 0 30px;
+    }
+
+    @media (max-width: map-get($breakpoints, 'sl' )) {
+        max-width: initial;
+    }
 
     &__filters{
         width: calc(100% - 200px);
@@ -16,7 +29,7 @@
 
     &__filter{
         position: relative;
-        max-width: 150px; 
+        max-width: max-content; 
         width: 100%;
         margin-right: 20px;
 
@@ -36,6 +49,10 @@
             padding: 10px; 
             border: 1px solid black;
             cursor: pointer;
+
+            svg{
+                margin-left: 8px;
+            }
         }
 
         &-options{
@@ -46,7 +63,7 @@
             overflow: hidden;
             position: absolute;
             left: 0;
-            top: 37px;
+            top: 89px;
             background-color: white;
             border: 1px solid black;
             border-top: initial;
@@ -207,8 +224,8 @@
             }
 
             &.active {
-                background-color: lightblue;
-                color: white;
+                background-color: lightgreen !important;
+                color: white !important;
             }
 
             &.hidden {

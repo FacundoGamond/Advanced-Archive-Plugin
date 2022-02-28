@@ -1,8 +1,27 @@
 .c-post {
     border: 1px solid black;
+    background-color: white;
+    align-self: flex-start;
 
     a {
-        padding: 30px;
+        padding: 30px 15px;
         display: block;
+    }
+
+    &__thumbnail{
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        object-position: center;
+        margin-bottom: 20px;
+    }
+
+    &__title{
+        font-size: 20px;
+    }
+
+    &__brief{
+        font-size: 15px;
+        margin-top: 10px;
     }
 }
