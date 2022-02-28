@@ -1,4 +1,4 @@
-# Instagram Feed Plugin
+# Advanced Archive Plugin
 This is a simple plugin which allow you improve the archive experience with some new features.
 
 ## Usage
