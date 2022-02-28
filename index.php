@@ -29,10 +29,9 @@ class AdvancedArchive
 
     function advancedArchivePage()
     { ?>
-        <div class="wrap">
+        <div class="wrap advanced-archive">
             <h1>Advanced Archive</h1>
             <p>This is a simple wordpress plugin to get a full archive experience.</p>
-            <p>Just paste in your post/page text editor this shortcode: [advanced-archive]</p>
             <h2>Features</h2>
             <ul>
                 <li>Ajax data return (no reload required)</li>
@@ -41,7 +40,29 @@ class AdvancedArchive
                 <li>Search Box</li>
                 <li>URL params for easy share</li>
             </ul>
+            <h3>Usage</h3>
+            <p>Just paste in your post/page text editor this shortcode: [advanced-archive]</p>
+            <p>You can customize yur layourt passing a few arguments:</p>
+            <ul>
+                <li>post_type -> Set your post type archive.</li>
+                <li>posts_per_page -> Set limit of posts per page.</li>
+                <li>component -> Set your own post component by creating a file in your theme:
+                    <ul>
+                        <li>Create a directory into your theme called advanced-archive/components</li>
+                        <li>Create your onw php component here</li>
+                        <li>Copy the file name and use it in your shortcode</li>
+                    </ul>
+                </li>
+            </ul>
+            <span>example: [advanced-archive post_type="post" posts_per_page="8" component="test"]</span>
         </div>
+
+        <style>
+            .advanced-archive ul {
+                list-style: disc;
+                padding-left: 20px;
+            }
+        </style>
 <?php }
 
     function printArchive($atts)
@@ -58,7 +79,7 @@ class AdvancedArchive
 
         $opt = array(
             'post_type' => $atts['post_type'] ? $atts['post_type'] : get_post_type(),
-            'posts_per_page' => 4,
+            'posts_per_page' => $atts['posts_per_page'] ? intval($atts['posts_per_page']) : 4,
             'component' => $atts['component'] ? $atts['component'] : 'false',
             'no_results_message' => __('Nothing Found...', 'advancedarchive'),
             'next_button' => 'Next >',
@@ -72,14 +93,14 @@ class AdvancedArchive
             ),
             'filters' => true,
             'filters_opt' => array(
-                'preppend' => 'Sort by ',
+                'preppend' => __('Sort by ', 'advancedarchive'),
                 'append' => file_get_contents(plugins_url('/assets/img/dropdown.svg', __FILE__)),
                 'title' => true
             )
         );
 
         $post_type = $opt['post_type'];
-        $component = $opt['component']; //template part from template-parts/component/component-$component
+        $component = $opt['component'];
         $nextBtn = $opt['next_button'];
         $prevBtn = $opt['prev_button'];
         $currentPage = isset($_GET[$post_type . '-page']) ? intval($_GET[$post_type . '-page']) : 1;
@@ -121,10 +142,10 @@ class AdvancedArchive
                 $posts->the_post();
                 ob_start();
                 set_query_var('newpost', get_post());
-                if($component != 'false'){
-                    get_template_part('template-parts/components/component', $component);
-                }else{
-                    include( 'inc/default/post-template.php' );
+                if ($component != 'false') {
+                    get_template_part('advanced-archive/cards/' . $component);
+                } else {
+                    include('inc/default/post-template.php');
                 }
                 $postsData .= ob_get_contents();
                 ob_end_clean();
@@ -286,10 +307,10 @@ class AdvancedArchive
             $full_posts->the_post();
             ob_start();
             set_query_var('newpost', get_post());
-            if($component != 'false'){
-                get_template_part('template-parts/components/component', $component);
-            }else{
-                include( 'inc/default/post-template.php' );
+            if ($component != 'false') {
+                get_template_part('advanced-archive/cards' . $component);
+            } else {
+                include('inc/default/post-template.php');
             }
             $postData .= ob_get_contents();
             ob_end_clean();
