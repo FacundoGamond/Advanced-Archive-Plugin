@@ -48,7 +48,7 @@ class AdvancedArchive
                 <li>posts_per_page -> Set limit of posts per page.</li>
                 <li>component -> Set your own post component by creating a file in your theme:
                     <ul>
-                        <li>Create a directory into your theme called advanced-archive/components</li>
+                        <li>Create a directory into your theme called advanced-archive/cards</li>
                         <li>Create your onw php component here</li>
                         <li>Copy the file name and use it in your shortcode</li>
                     </ul>
